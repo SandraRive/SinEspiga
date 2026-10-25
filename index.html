@@ -72,8 +72,8 @@
     <footer>Datos de <a href="https://es.openfoodfacts.org" target="_blank" rel="noopener">Open Food Facts</a> (ODbL) · Orientativo: revisa siempre la etiqueta y el símbolo de la espiga barrada</footer>
   </div>
 
-  <!-- Librería de lectura de códigos de barras (global: Html5Qrcode) -->
-  <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+  <!-- Lector de códigos de barras para navegadores sin BarcodeDetector, como iPhone (global: BarcodeDetectionAPI) -->
+  <script src="https://cdn.jsdelivr.net/npm/barcode-detector@3.2.2/dist/iife/ponyfill.js"></script>
   <!-- App -->
   <script type="module" src="js/main.js"></script>
 </body>

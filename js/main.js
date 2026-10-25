@@ -1,6 +1,7 @@
 // Punto de entrada: conecta los botones con la lógica, los servicios y la interfaz.
 
-import { analyzeIngredients, evaluateProduct, isValidBarcode } from "./core/analyzer.js";
+import { analyzeIngredients, evaluateProduct } from "./core/analyzer.js";
+import { isValidBarcode } from "./core/barcode.js";
 import { fetchProduct, NetworkError } from "./services/openFoodFacts.js";
 import { BarcodeScanner, ScannerUnavailableError } from "./services/scanner.js";
 import { getHistory, addToHistory, clearHistory } from "./storage/history.js";
@@ -95,6 +96,11 @@ function bindEvents() {
   $("clear").addEventListener("click", () => { $("txt").value = ""; $("txt").focus(); });
 
   $("tab-scan").addEventListener("click", () => showTab("scan"));
+
+  // Si sales de la app o bloqueas el móvil, se apaga la cámara
+  document.addEventListener("visibilitychange", async () => {
+    if (document.hidden && scanner.running) { await scanner.stop(); setCameraState(false); }
+  });
   $("tab-text").addEventListener("click", async () => {
     showTab("text");
     if (scanner.running) { await scanner.stop(); setCameraState(false); }

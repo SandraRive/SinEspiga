@@ -22,8 +22,7 @@
 .manual input::placeholder{color:#9b8460;letter-spacing:0}
 .manual button{font:600 .9rem var(--body);padding:0 14px;border-radius:12px;border:1px solid var(--viewer-line);background:transparent;color:#f3e6c8;cursor:pointer}
 #reader{position:absolute;inset:0}
-#reader video{width:100%!important;height:100%!important;object-fit:cover}
-#reader img,#reader canvas{display:none}
+#reader video{width:100%;height:100%;object-fit:cover;display:block}
 .live .bars{display:none}
 .corner,.laser,.hint{z-index:2}
 .live .hint{background:rgba(0,0,0,.45);padding:4px 0}

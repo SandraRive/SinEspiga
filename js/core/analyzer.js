@@ -55,8 +55,3 @@ export function evaluateProduct(product) {
   }
   return result;
 }
-
-/** Devuelve true si el código tiene pinta de código de barras (8 a 14 cifras). */
-export function isValidBarcode(code) {
-  return /^\d{8,14}$/.test(code);
-}
