@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#bf8a2c">
+  <meta name="description" content="Escanea un producto y mira si lleva gluten.">
+  <title>Sin Espiga</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
+  <!-- Fuentes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Figtree:wght@400;500;600;700&display=swap">
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components/scanner.css">
+  <link rel="stylesheet" href="css/components/result.css">
+  <link rel="stylesheet" href="css/components/checker.css">
+  <link rel="stylesheet" href="css/components/history.css">
+</head>
+<body>
+  <div class="app">
+    <header>
+      <div class="logo" aria-hidden="true">
+        <img src="assets/logo.svg" alt="" width="26" height="26">
+      </div>
+      <div><h1>Sin Espiga</h1><p>Escanea y mira si lleva gluten</p></div>
+    </header>
+
+    <div class="tabs" role="tablist">
+      <button role="tab" id="tab-scan" aria-selected="true">📷 Escanear</button>
+      <button role="tab" id="tab-text" aria-selected="false">📝 Leer etiqueta</button>
+    </div>
+
+    <section id="pane-scan">
+      <div class="viewer">
+        <div class="frame" id="frame">
+          <div id="reader"></div>
+          <div class="bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <div class="corner c1"></div><div class="corner c2"></div><div class="corner c3"></div><div class="corner c4"></div>
+          <div class="laser"></div>
+          <div class="hint" id="hint">Pulsa el botón y apunta al código de barras</div>
+        </div>
+        <button class="scanbtn" id="scan">Abrir cámara</button>
+        <form class="manual" id="manual">
+          <input id="code" inputmode="numeric" autocomplete="off" placeholder="…o escribe el código" maxlength="14">
+          <button type="submit">Buscar</button>
+        </form>
+      </div>
+    </section>
+
+    <section id="pane-text" hidden>
+      <div class="checker">
+        <div class="label">Pega o escribe los ingredientes</div>
+        <textarea id="txt">Harina de arroz, azúcar, aceite de girasol, almidón de maíz, cacao en polvo, gasificante (bicarbonato sódico), sal. Puede contener trazas de avena y soja.</textarea>
+        <p>Útil cuando el producto no aparece en la base de datos.</p>
+        <div class="row"><button class="btn" id="check">Analizar ingredientes</button><button class="btn ghost" id="clear">Borrar</button></div>
+      </div>
+    </section>
+
+    <section class="result" id="result" aria-live="polite">
+      <div class="empty"><strong>Escanea tu primer producto</strong>Abre la cámara o escribe el número del código de barras.</div>
+    </section>
+
+    <section class="hist">
+      <h3>Últimos escaneos <button id="wipe">Vaciar</button></h3>
+      <ul id="hist"></ul>
+    </section>
+
+    <footer>Datos de <a href="https://es.openfoodfacts.org" target="_blank" rel="noopener">Open Food Facts</a> (ODbL) · Orientativo: revisa siempre la etiqueta y el símbolo de la espiga barrada</footer>
+  </div>
+
+  <!-- Librería de lectura de códigos de barras (global: Html5Qrcode) -->
+  <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+  <!-- App -->
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

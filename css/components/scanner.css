@@ -1,0 +1,29 @@
+/* Visor de la cámara y búsqueda manual */
+.viewer{background:var(--viewer);border-radius:22px;padding:18px;display:flex;flex-direction:column;gap:14px}
+.frame{position:relative;aspect-ratio:16/10;max-width:100%;border-radius:14px;overflow:hidden;
+  background:repeating-linear-gradient(90deg,transparent 0 10px,rgba(255,255,255,.025) 10px 11px)}
+.corner{position:absolute;width:30px;height:30px;border:3px solid #f0c35a;opacity:.9}
+.c1{top:12px;left:12px;border-right:0;border-bottom:0;border-radius:8px 0 0 0}
+.c2{top:12px;right:12px;border-left:0;border-bottom:0;border-radius:0 8px 0 0}
+.c3{bottom:12px;left:12px;border-right:0;border-top:0;border-radius:0 0 0 8px}
+.c4{bottom:12px;right:12px;border-left:0;border-top:0;border-radius:0 0 8px 0}
+.bars{position:absolute;inset:32% 22%;display:flex;gap:3px;align-items:stretch;opacity:.35}
+.bars i{background:#f1dfb5;flex:1}
+.bars i:nth-child(3n){flex:2}.bars i:nth-child(5n){flex:.5}
+.laser{position:absolute;left:8%;right:8%;height:2px;background:#ff5a4e;box-shadow:0 0 12px 2px rgba(255,90,78,.7);top:50%}
+.scanning .laser{animation:sweep 1.1s ease-in-out infinite alternate}
+@keyframes sweep{from{top:22%}to{top:78%}}
+@media (prefers-reduced-motion:reduce){.scanning .laser{animation:none}}
+.hint{position:absolute;bottom:14px;left:0;right:0;text-align:center;color:#d6c095;font-size:.78rem}
+.scanbtn{font:700 1rem var(--body);border:0;border-radius:14px;padding:14px;background:#f0c35a;color:#2a1c08;cursor:pointer;display:flex;gap:8px;align-items:center;justify-content:center}
+.scanbtn:disabled{opacity:.6;cursor:progress}
+.manual{display:flex;gap:8px}
+.manual input{flex:1;min-width:0;font:500 1rem var(--body);font-variant-numeric:tabular-nums;letter-spacing:.06em;padding:12px;border-radius:12px;border:1px solid var(--viewer-line);background:#45321a;color:#f3e6c8}
+.manual input::placeholder{color:#9b8460;letter-spacing:0}
+.manual button{font:600 .9rem var(--body);padding:0 14px;border-radius:12px;border:1px solid var(--viewer-line);background:transparent;color:#f3e6c8;cursor:pointer}
+#reader{position:absolute;inset:0}
+#reader video{width:100%!important;height:100%!important;object-fit:cover}
+#reader img,#reader canvas{display:none}
+.live .bars{display:none}
+.corner,.laser,.hint{z-index:2}
+.live .hint{background:rgba(0,0,0,.45);padding:4px 0}

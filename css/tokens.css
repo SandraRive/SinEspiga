@@ -1,0 +1,19 @@
+/* Tokens de diseño: colores (claro/oscuro) y tipografías. Cambia aquí la paleta de toda la app. */
+:root{
+  --bg:#fcf6e8; --surface:#fffdf7; --ink:#3a2a12; --muted:#7f6b4a; --line:#efe2c4;
+  --brand:#bf8a2c; --brand-ink:#fffdf7; --viewer:#5a4220; --viewer-line:#7a5c32;
+  --ok:#1d8a4e; --ok-bg:#e2f4e9; --warn:#b87a0a; --warn-bg:#fbf0d9; --bad:#c23b2e; --bad-bg:#fbe4e1; --unk:#6b7a86; --unk-bg:#e8ecef;
+  --hl-bad:#f6c4bc; --hl-warn:#f3d98f;
+  --display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
+  --body:"Figtree",ui-sans-serif,system-ui,-apple-system,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#1a140b; --surface:#251c10; --ink:#f3e6c8; --muted:#b8a27a; --line:#3d2f1a;
+  --brand:#e0ad4c; --brand-ink:#2a1c08; --viewer:#120d06; --viewer-line:#4a3618;
+  --ok:#4cc483; --ok-bg:#12301f; --warn:#e3a93a; --warn-bg:#33270c; --bad:#ef6b5e; --bad-bg:#3a1714; --unk:#9aa8b3; --unk-bg:#1f2a30;
+  --hl-bad:#6b2620; --hl-warn:#5c4612; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#1a140b; --surface:#251c10; --ink:#f3e6c8; --muted:#b8a27a; --line:#3d2f1a;
+  --brand:#e0ad4c; --brand-ink:#2a1c08; --viewer:#120d06; --viewer-line:#4a3618;
+  --ok:#4cc483; --ok-bg:#12301f; --warn:#e3a93a; --warn-bg:#33270c; --bad:#ef6b5e; --bad-bg:#3a1714; --unk:#9aa8b3; --unk-bg:#1f2a30;
+  --hl-bad:#6b2620; --hl-warn:#5c4612; color-scheme:dark}
