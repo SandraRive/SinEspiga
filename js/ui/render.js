@@ -109,7 +109,11 @@ export function setCameraState(on, hint) {
   $("frame").classList.toggle("live", on);
   $("frame").classList.toggle("scanning", on);
   $("scan").textContent = on ? "Parar cámara" : "Abrir cámara";
-  $("hint").textContent = hint ?? (on ? "Centra el código de barras en el recuadro" : "Pulsa el botón y apunta al código de barras");
+  $("hint").textContent = hint ?? (on ? "Apunta al código, no hace falta que llene el recuadro" : "Pulsa el botón y apunta al código de barras");
+}
+
+export function setHint(text) {
+  $("hint").textContent = text;
 }
 
 export function showTab(name) {

@@ -3,10 +3,10 @@
 import { analyzeIngredients, evaluateProduct } from "./core/analyzer.js";
 import { isValidBarcode } from "./core/barcode.js";
 import { fetchProduct, NetworkError } from "./services/openFoodFacts.js";
-import { BarcodeScanner, ScannerUnavailableError } from "./services/scanner.js";
+import { BarcodeScanner, ScannerUnavailableError, preloadScanner } from "./services/scanner.js";
 import { getHistory, addToHistory, clearHistory } from "./storage/history.js";
 import {
-  renderResult, renderMessage, renderLoading, renderHistory, setCameraState, showTab,
+  renderResult, renderMessage, renderLoading, renderHistory, setCameraState, setHint, showTab,
 } from "./ui/render.js";
 
 const $ = id => document.getElementById(id);
@@ -43,10 +43,13 @@ async function lookup(rawCode) {
 
 /* ---------- cámara ---------- */
 
-const scanner = new BarcodeScanner("reader", code => {
-  setCameraState(false);
-  $("code").value = code;
-  lookup(code);
+const scanner = new BarcodeScanner("reader", {
+  onDetected: code => {
+    setCameraState(false);
+    $("code").value = code;
+    lookup(code);
+  },
+  onHint: text => setHint(text),
 });
 
 async function toggleCamera() {
@@ -110,3 +113,4 @@ function bindEvents() {
 
 bindEvents();
 renderHistory(getHistory());
+preloadScanner();

@@ -27,18 +27,22 @@ SinEspiga/
     ├── main.js                Punto de entrada: conecta eventos y módulos
     ├── config.js              Constantes: API, palabras clave, textos
     ├── core/
-    │   └── analyzer.js        Lógica pura del semáforo (sin DOM ni red)
+    │   ├── analyzer.js        Lógica pura del semáforo (sin DOM ni red)
+    │   ├── barcode.js         Validación de códigos de barras
+    │   └── imageFilters.js    Enfoque digital para fotos borrosas
     ├── services/
     │   ├── openFoodFacts.js   Llamadas a la API y normalización de datos
-    │   └── scanner.js         Cámara y lectura de códigos de barras
+    │   └── scanner.js         Cámara y lectura de códigos (lector nativo o ZXing-C++)
     ├── storage/
     │   └── history.js         Historial en localStorage
     └── ui/
         └── render.js          Todo lo que pinta HTML
 ```
 
-La idea es que cada capa solo hable con la de al lado:
-`main.js` → usa `core`, `services`, `storage` y `ui`, pero esas carpetas no se conocen entre ellas (todas leen de `config.js`).
+Reglas de dependencias:
+- `core/` es lógica pura: no depende de nada salvo `config.js`.
+- `services/`, `storage/` y `ui/` pueden usar `core/` y `config.js`, pero no se usan entre ellas.
+- `main.js` es el único que lo conecta todo.
 
 ## Probarla en local
 
